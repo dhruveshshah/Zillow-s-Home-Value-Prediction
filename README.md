@@ -1,0 +1,2 @@
+# Zillow-s-Home-Value-Prediction
+This is a Kaggle competition, Zillow is asking to predict the log-error between their Zestimate and the actual sale price, given all the features of a home. The log error is defined as  logerror = log(Zestimate)−log(SalePrice) and it is recorded in the transactions file train.csv. In this competition, you are going to predict the logerror for the months in Fall 2017
