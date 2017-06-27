@@ -153,4 +153,11 @@ transactions <- transactions %>% mutate(abs_logerror = abs(logerror))
   
   cor_tmp %>% 
     ggplot(aes(x=build_year))+geom_line(stat="density", color="red", size=1.2)+theme_bw()
+
+cor_tmp %>% 
+  group_by(build_year) %>% 
+  summarize(mean_logerror = mean(logerror)) %>% 
+  ggplot(aes(x=build_year,y=mean_logerror))+
+  geom_smooth(color="grey40")+
+  geom_point(color="red")+coord_cartesian(ylim=c(0,0.075))+theme_bw()
   
