@@ -132,3 +132,25 @@ transactions <- transactions %>% mutate(abs_logerror = abs(logerror))
     geom_line(size=1.5, color="red")+
     geom_point(size=5, color="red")+theme_bw()
 
+#Missing Values
+  
+  missing_values <- properties %>% summarize_each(funs(sum(is.na(.))/n()))
+  
+  missing_values <- gather(missing_values, key="feature", value="missing_pct")
+  missing_values %>% 
+    ggplot(aes(x=reorder(feature,-missing_pct),y=missing_pct)) +
+    geom_bar(stat="identity",fill="red")+
+    coord_flip()+theme_bw()
+  
+  good_features <- filter(missing_values, missing_pct<0.75)
+  good_features <- filter(missing_values, missing_pct<0.75)
+  
+  vars <- good_features$feature[str_detect(good_features$feature,'num_')]
+  cor_tmp <- transactions %>% left_join(properties, by="id_parcel")
+  tmp <- cor_tmp %>% select(one_of(c(vars,"logerror")))
+  
+  corrplot(cor(tmp, use="complete.obs"),type="lower")
+  
+  cor_tmp %>% 
+    ggplot(aes(x=build_year))+geom_line(stat="density", color="red", size=1.2)+theme_bw()
+  
