@@ -22,7 +22,6 @@ sample<-fread("C:\\Users\\Dhruvesh\\Documents\\Kaggle\\Zillow\\sample_submission
 transactions<-fread("C:\\Users\\Dhruvesh\\Documents\\Kaggle\\Zillow\\train_2016.csv")
 
 #Peak at the dataset
-
 datatable(head(properties,100), style="bootstrap", class="table-condensed",options = list(dom='tp',scrollx=TRUE))
 
 datatable(head(transactions,100), style="bootstrap", class="table-condensed", options = list(dom = 'tp'))
@@ -31,7 +30,6 @@ datatable(head(sample,10), style="bootstrap", class="table-condensed", options =
 View(properties)
 
 #renaming the features
-
 properties <- properties %>% rename(
   id_parcel = parcelid,
   build_year = yearbuilt,
